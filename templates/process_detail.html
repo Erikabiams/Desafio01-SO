@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Processo {{ pid }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="/">← Voltar</a>
+        <div class="section">
+            <h2>Detalhes do Processo {{ pid }}</h2>
+            <ul>
+                <li><strong>Nome:</strong> {{ info.name }}</li>
+                <li><strong>Executável:</strong> {{ info.exe }}</li>
+                <li><strong>Status:</strong> {{ info.status }}</li>
+                <li><strong>CPU (%):</strong> {{ info.cpu_percent }}</li>
+                <li><strong>Memória (%):</strong> {{ info.memory_percent }}</li>
+                <li><strong>Iniciado em:</strong> {{ info.create_time }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

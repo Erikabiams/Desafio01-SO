@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor do Sistema</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Monitor do Sistema - ECP/UFMA</h1>
+
+        <div class="section">
+            <h2>Sistema</h2>
+            <p><strong>Nome:</strong> {{ uname.system }} {{ uname.release }} ({{ uname.machine }})</p>
+            <p><strong>Tempo ligado:</strong> {{ boot_time }}</p>
+        </div>
+
+        <div class="section">
+            <h2>CPU</h2>
+            <ul>
+                <li><strong>Núcleos físicos:</strong> {{ cpu_info.physical_cores }}</li>
+                <li><strong>Núcleos lógicos:</strong> {{ cpu_info.total_cores }}</li>
+                <li><strong>Frequência atual:</strong> {{ cpu_info.current_frequency }} MHz</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Memória</h2>
+            <ul>
+                <li><strong>Total:</strong> {{ memory.total }}</li>
+                <li><strong>Usada:</strong> {{ memory.used }}</li>
+                <li><strong>Livre:</strong> {{ memory.free }}</li>
+            </ul>
+        </div>
+
+        {% if battery %}
+        <div class="section">
+            <h2>Bateria</h2>
+            <p><strong>Nível:</strong> {{ battery.percent }}%</p>
+            <p><strong>Carregando:</strong> {{ 'Sim' if battery.power_plugged else 'Não' }}</p>
+        </div>
+        {% endif %}
+
+        <div class="section">
+            <h2>Buscar Processos</h2>
+            <input type="text" id="searchName" placeholder="Buscar por nome..." onkeyup="filterTable()" />
+            <input type="number" id="searchPID" placeholder="Ir para PID..." />
+            <button onclick="goToPID()">Buscar PID</button>
+        </div>
+
+        <div class="section">
+            <h2>Processos</h2>
+            <table id="processTable">
+                <thead>
+                    <tr><th>PID</th><th>Nome</th><th>Detalhes</th></tr>
+                </thead>
+                <tbody>
+                    {% for proc in processes %}
+                    <tr>
+                        <td>{{ proc.pid }}</td>
+                        <td>{{ proc.name }}</td>
+                        <td><a href="/process/{{ proc.pid }}">Ver</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+    function filterTable() {
+        const input = document.getElementById("searchName").value.toLowerCase();
+        const rows = document.querySelectorAll("#processTable tbody tr");
+        rows.forEach(row => {
+            const name = row.cells[1].textContent.toLowerCase();
+            row.style.display = name.includes(input) ? "" : "none";
+        });
+    }
+
+    function goToPID() {
+        const pid = document.getElementById("searchPID").value;
+        if (pid) {
+            window.location.href = `/process/${pid}`;
+        }
+    }
+    </script>
+</body>
+</html>
