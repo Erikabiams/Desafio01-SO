@@ -2,12 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Monitor do Sistema</title>
+    <title>Monitoramento-SO</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Monitor do Sistema - ECP/UFMA</h1>
+        <h1>Monitoramento do Sistema</h1>
 
         <div class="section">
             <h2>Sistema</h2>
@@ -59,7 +59,7 @@
                     <tr>
                         <td>{{ proc.pid }}</td>
                         <td>{{ proc.name }}</td>
-                        <td><a href="/process/{{ proc.pid }}">Ver</a></td>
+                        <td><a href="/process/{{ proc.pid }}">Visualizar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
