@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 body {
     font-family: "Segoe UI", sans-serif;
-    background-color: #1e1e2f;
+    background-color: #DAD2FF;
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -11,11 +12,16 @@ body {
 .section {
     margin-bottom: 30px;
     padding: 15px;
-    background: #2e2e3f;
+    background: #123458;
     border-radius: 10px;
 }
+.section_grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
 h2 {
-    color: #00d8ff;
+    color: #EBE5C2;
 }
 table {
     width: 100%;
@@ -23,19 +29,20 @@ table {
     margin-top: 10px;
 }
 th, td {
-    border: 1px solid #444;
+    border: 1px solid #000;
     padding: 8px;
     text-align: left;
 }
 th {
-    background-color: #3e3e5e;
+    background-color: #07073f;
 }
 a {
-    color: #00d8ff;
+    color: #c9f4fb;
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
+    color: aqua;
 }
 input[type="text"], input[type="number"] {
     padding: 8px;
@@ -54,4 +61,12 @@ button {
 }
 button:hover {
     background-color: #00b8d4;
+}
+
+h1{
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    color: rgb(2, 0, 11);
 }
